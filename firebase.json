@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/juego-de-memoria",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
