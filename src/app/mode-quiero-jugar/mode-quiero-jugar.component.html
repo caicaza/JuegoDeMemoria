@@ -1,0 +1,139 @@
+<div class="menuGame px-2 "
+     style="width: 100%;" >
+  <div class="row align-items-center align-content-center" style="text-align: center">
+    <div class="col-4 align-items-center">
+      <div class="row " style="text-align: center">
+        <div class="col-sm-12 col-lg-6 py-2 ">
+          <div class="card">
+            <p>
+              Tiempo
+            </p>
+            <div >
+
+            </div>
+            <p>
+              {{temporizador}}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-6 py-2 ">
+          <div class="card">
+            <p>
+              Movimientos
+            </p>
+            <p>
+              {{movimientosRestantes}}/{{movimientosMax}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 py-4" >
+      <h3 style="color: white">NIVEL</h3>
+      <h3 style="color: white">{{nivel}}</h3>
+    </div>
+    <div class="col-4" >
+      <div class="row  align-items-center align-content-center" >
+        <div class="col-sm-12 col-lg-6 py-2 ">
+          <div class="card">
+            <p>
+              Puntaje
+            </p>
+            <p>
+             {{puntos}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-6 col-sm-3" *ngFor="let carta of cartasJuego; index as i">
+      <ng-container  *ngIf="carta.isVisible">
+        <div (click)="clickCarta(carta.id, i)" class="card text-center my-3" style="width: 120px" >
+          <img *ngIf="!carta.isSelect;else imgCarta" class="mx-auto d-block" style="width: 120px" [src]="carta.imagenReverso">
+          <ng-template #imgCarta>
+            <img class="mx-auto d-block" style="width: 120px" [src]="carta.imagen">
+
+
+          </ng-template>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+
+<!--ventana modal PERDISTE-->
+
+<div class="modal" id="myModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" >¡Oh no!</h5>
+
+      </div>
+      <div class="modal-body">
+        <p>{{losseMessage}}.</p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary mx-auto px-4"
+                (click)="reiniciar()">Reiniciar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ventana modal ganaste-->
+
+<div class="modal" id="myModal2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" >¡Muy Bien!</h5>
+
+      </div>
+      <div class="modal-body">
+        <button (click)="nextLevel()" type="button" class="btn btn-primary mx-2 px-4">SIGUIENTE NIVEL</button>
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary mx-auto px-4" (click)="reiniciar2()">Reiniciar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--ventana modal resultado-->
+
+<div class="modal" id="myModal3" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered text-center">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title w-100 text-center" >¡FELICITACIONES!</h5>
+
+      </div>
+      <div class="modal-body">
+        <p>Tiempo total = {{tiempoText}}</p>
+        <p>Intentos = {{intentos}}</p>
+
+      </div>
+      <div class="modal-footer">
+
+        <button (click)="closeFormModal3()" routerLink="/Inicio" type="button" class="btn btn-primary mx-2 px-4" >Menú</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
